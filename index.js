@@ -16,7 +16,10 @@ app.post("/login", async (req, res) => {
   var password = req.body.password;
 
   try {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox"],
+    });
     const page = await browser.newPage();
     await page.goto("http://servicios.fpune.edu.py:82/consultor/");
     await page.waitForSelector(".form-signin");
