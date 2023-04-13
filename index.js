@@ -29,13 +29,11 @@ app.post("/login", async (req, res) => {
     await page.click(".btn").then(async () => {
       await page.waitForSelector(".container");
       var url = page.url();
-      console.log(url);
       if (url == "http://servicios.fpune.edu.py:82/consultor/Error.html") {
         res.status(400).send("Credenciales incorrectas");
       } else if (
         url == "http://servicios.fpune.edu.py:82/consultor/detalle.php"
       ) {
-        console.log("Inicio de sesion correcto...");
         const datos = await page.$eval("*", (el) => el.innerText);
         await page.close();
         var datosPalabras = datos.trim().split(/\s+/);
