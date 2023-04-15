@@ -22,10 +22,12 @@ app.post("/login", async (req, res) => {
     });
     const page = await browser.newPage();
     await page.goto("http://servicios.fpune.edu.py:82/consultor/");
+    await page.waitForSelector(".form-signin");
     await page.type("#usuario", cedula);
     await page.type("#clave", password);
 
     await page.click(".btn").then(async () => {
+      await page.waitForSelector(".container");
       var url = page.url();
       if (url == "http://servicios.fpune.edu.py:82/consultor/Error.html") {
         res.send("Credenciales incorrectas");
