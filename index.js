@@ -30,7 +30,7 @@ app.post("/login", async (req, res) => {
       await page.waitForSelector(".container");
       var url = page.url();
       if (url == "http://servicios.fpune.edu.py:82/consultor/Error.html") {
-        res.status(400).send("Credenciales incorrectas");
+        res.send("Credenciales incorrectas");
       } else if (
         url == "http://servicios.fpune.edu.py:82/consultor/detalle.php"
       ) {
@@ -274,7 +274,7 @@ app.post("/login", async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send("Intentalo de nuevo mas tarde...");
+    res.send("Intentalo de nuevo mas tarde...");
   }
 });
 console.log("Server running on port " + PORT);
