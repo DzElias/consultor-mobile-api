@@ -21,8 +21,8 @@ app.post("/login", async (req, res) => {
       args: ["--no-sandbox"],
     });
     const page = await browser.newPage();
+    await page.setDefaultNavigationTimeout(0);
     await page.goto("http://servicios.fpune.edu.py:82/consultor/");
-    await page.waitForSelector(".form-signin");
     await page.type("#usuario", cedula);
     await page.type("#clave", password);
 
